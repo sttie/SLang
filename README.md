@@ -58,3 +58,4 @@ the best language in the world (potentially)
 
 ## TODO:
 Real numbers, arrays and strings' indexation support.
+Implementation of error recovery in the parser in panic mode.
