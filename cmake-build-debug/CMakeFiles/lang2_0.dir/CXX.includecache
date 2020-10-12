@@ -194,3 +194,13 @@ algorithm
 iostream
 -
 
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/symtable.cpp
+../include/symtable.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/symtable.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/type.cpp
+../include/type.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/type.h
+tuple
+-
+
