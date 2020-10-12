@@ -1,4 +1,5 @@
 ## Example of code
+**main.sl**
 ```
   string get_hello() {
       string hello_str = "Hello"
