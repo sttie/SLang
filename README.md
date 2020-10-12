@@ -1,3 +1,7 @@
+## What is this?
+
+SLang is the result of my interest in the theory of formal languages and the creation of programming languages. This is just a training project to gain experience in C++ development and to learn how to create programming languages.
+
 ## Usage
 
 You can use the compiled file SLang and pass a filename with your SLang code to it:
