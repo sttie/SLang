@@ -55,3 +55,6 @@ the best language in the world (potentially)
 the best language in the world (potentially) 
 the best language in the world (potentially)
 ```
+
+## TODO:
+Real numbers, arrays and strings' indexation support.
