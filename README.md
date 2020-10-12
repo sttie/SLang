@@ -1,4 +1,9 @@
-## Example of code
+## Usage
+
+You can use the compiled file SLang and pass a filename with your SLang code to it:
+```./Slang main.sl```
+
+## Examples of code
 **example1.sl**
 ```
   string get_hello() {
