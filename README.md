@@ -1,6 +1,6 @@
 ## What is this?
 
-SLang is the result of my interest in the theory of formal languages and the creation of programming languages. This is just a training project to gain experience in C++ development and to learn how to create programming languages.
+SLang is the result of my interest in the theory of formal languages. This is just a training project to gain experience in C++ development and to create a perfect programming language someday.
 
 ## Usage
 
