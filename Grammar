@@ -1,0 +1,47 @@
+statements  := (statement | NEWLINE)* | e
+statement   := func_or_simple | print_stmt | if_statement | while_statement | return_statement
+
+func_or_simple := func_declaration | assignment_expr | expr
+
+simple_stmt     :=
+print_stmt      := "print" args
+
+if_statement    := "if" "(" expr ")"
+                   "{" statements "}" NEWLINE*
+
+                   ("elif" "(" expr ")"
+                     "{" statements "}")*
+
+                   [else "{" statements "}"]
+
+while_statement := "while" "(" expr ")" NEWLINE*
+                    "{" statements "}"
+
+func_declaration := type id "(" func_parameters ")" "{" statements "}"
+func_parameters := (type id ("," type id)*)*
+
+return_statement := "return" id
+
+args := expr | ("," expr)*
+assignment_expr := (type)? id "=" expr
+
+
+expr         := logical_expr ("and" logical_expr)*
+logical_expr := logical_term (("or" | "not") logical term)*
+logical_term := compare_term (comparison compare_term)*
+compare_term := add_term (("+" | "-") add_term)*
+add_term     := mult_term (("*" | "/") mult_term)*
+
+mult_term    := "(" expr ")"
+             | ("-" | "not") factor
+             | number
+             | id
+             | func_call
+             | literal
+             | true
+             | false
+
+func_call       := id "(" args ")"
+literal         := " word "
+comparison      := ">" | "<" | ">=" | "<=" | "==" | "!="
+logic_operation := "and" | "or" | "not"

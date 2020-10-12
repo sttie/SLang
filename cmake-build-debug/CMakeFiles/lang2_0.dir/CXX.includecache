@@ -1,0 +1,196 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+vector
+-
+map
+-
+memory
+-
+list
+-
+iostream
+-
+type.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/type.h
+symtable.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/symtable.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTAssignment.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTFunCall.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTFunction.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTIf.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTOperation.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTPrint.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTReturn.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTVariable.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTWhile.h
+../ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/lexer.h
+token.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/token.h
+string
+-
+istream
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/parse.h
+ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+ast_types/ASTAssignment.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTAssignment.h
+ast_types/ASTFunction.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTFunction.h
+ast_types/ASTIf.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTIf.h
+ast_types/ASTOperation.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTOperation.h
+ast_types/ASTPrint.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTPrint.h
+ast_types/ASTReturn.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTReturn.h
+ast_types/ASTVariable.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTVariable.h
+ast_types/ASTWhile.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTWhile.h
+ast_types/ASTFunCall.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTFunCall.h
+token.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/token.h
+lexer.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/lexer.h
+string
+-
+vector
+-
+memory
+-
+list
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/symtable.h
+type.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/type.h
+string
+-
+map
+-
+memory
+-
+stdexcept
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/token.h
+string
+-
+ostream
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/type.h
+string
+-
+variant
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast.cpp
+../include/ast.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast.h
+iostream
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTAssignment.cpp
+../../include/ast_types/ASTAssignment.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTAssignment.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTFunCall.cpp
+../../include/ast_types/ASTFunCall.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTFunCall.h
+../../include/ast_types/ASTFunction.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTFunction.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTFunction.cpp
+../../include/ast_types/ASTFunction.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTFunction.h
+../../include/ast_types/ASTReturn.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTReturn.h
+algorithm
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTIf.cpp
+../../include/ast_types/ASTIf.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTIf.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTOperation.cpp
+../../include/ast_types/ASTOperation.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTOperation.h
+stdexcept
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTPrint.cpp
+../../include/ast_types/ASTPrint.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTPrint.h
+../../include/ast_types/ASTVariable.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTVariable.h
+iostream
+-
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTReturn.cpp
+../../include/ast_types/ASTReturn.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTReturn.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTVariable.cpp
+../../include/ast_types/ASTVariable.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTVariable.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/ast_types/ASTWhile.cpp
+../../include/ast_types/ASTWhile.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/ast_types/ASTWhile.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/main.cpp
+iostream
+-
+fstream
+-
+../include/parse.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/parse.h
+
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/src/parse.cpp
+../include/parse.h
+/home/samvelochka/Рабочий стол/Проекты/lang2.0/include/parse.h
+algorithm
+-
+iostream
+-
+

@@ -1,0 +1,4 @@
+bool flag = true
+if (flag) {
+    print 4 + 2
+}
