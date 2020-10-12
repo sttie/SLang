@@ -1,4 +1,4 @@
-# Install script for directory: /home/samvelochka/Рабочий стол/Проекты/lang2.0
+# Install script for directory: /home/samvelochka/Рабочий стол/Проекты/SLang
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/samvelochka/Рабочий стол/Проекты/lang2.0/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/samvelochka/Рабочий стол/Проекты/SLang/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

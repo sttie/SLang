@@ -68,24 +68,13 @@ RM = /snap/clion/129/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/samvelochka/Рабочий стол/Проекты/lang2.0"
+CMAKE_SOURCE_DIR = "/home/samvelochka/Рабочий стол/Проекты/SLang"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/samvelochka/Рабочий стол/Проекты/lang2.0/cmake-build-debug"
+CMAKE_BINARY_DIR = "/home/samvelochka/Рабочий стол/Проекты/SLang/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/129/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -98,11 +87,22 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/snap/clion/129/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/samvelochka/Рабочий стол/Проекты/lang2.0/cmake-build-debug/CMakeFiles" "/home/samvelochka/Рабочий стол/Проекты/lang2.0/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/samvelochka/Рабочий стол/Проекты/SLang/cmake-build-debug/CMakeFiles" "/home/samvelochka/Рабочий стол/Проекты/SLang/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/samvelochka/Рабочий стол/Проекты/lang2.0/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/samvelochka/Рабочий стол/Проекты/SLang/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -131,17 +131,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named lang2_0
+# Target rules for targets named SLang
 
 # Build rule for target.
-lang2_0: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lang2_0
-.PHONY : lang2_0
+SLang: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SLang
+.PHONY : SLang
 
 # fast build rule for target.
-lang2_0/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/build
-.PHONY : lang2_0/fast
+SLang/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/build
+.PHONY : SLang/fast
 
 src/ast.o: src/ast.cpp.o
 
@@ -149,7 +149,7 @@ src/ast.o: src/ast.cpp.o
 
 # target to build an object file
 src/ast.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast.cpp.o
 .PHONY : src/ast.cpp.o
 
 src/ast.i: src/ast.cpp.i
@@ -158,7 +158,7 @@ src/ast.i: src/ast.cpp.i
 
 # target to preprocess a source file
 src/ast.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast.cpp.i
 .PHONY : src/ast.cpp.i
 
 src/ast.s: src/ast.cpp.s
@@ -167,7 +167,7 @@ src/ast.s: src/ast.cpp.s
 
 # target to generate assembly for a file
 src/ast.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast.cpp.s
 .PHONY : src/ast.cpp.s
 
 src/ast_types/ASTAssignment.o: src/ast_types/ASTAssignment.cpp.o
@@ -176,7 +176,7 @@ src/ast_types/ASTAssignment.o: src/ast_types/ASTAssignment.cpp.o
 
 # target to build an object file
 src/ast_types/ASTAssignment.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTAssignment.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTAssignment.cpp.o
 .PHONY : src/ast_types/ASTAssignment.cpp.o
 
 src/ast_types/ASTAssignment.i: src/ast_types/ASTAssignment.cpp.i
@@ -185,7 +185,7 @@ src/ast_types/ASTAssignment.i: src/ast_types/ASTAssignment.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTAssignment.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTAssignment.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTAssignment.cpp.i
 .PHONY : src/ast_types/ASTAssignment.cpp.i
 
 src/ast_types/ASTAssignment.s: src/ast_types/ASTAssignment.cpp.s
@@ -194,7 +194,7 @@ src/ast_types/ASTAssignment.s: src/ast_types/ASTAssignment.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTAssignment.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTAssignment.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTAssignment.cpp.s
 .PHONY : src/ast_types/ASTAssignment.cpp.s
 
 src/ast_types/ASTFunCall.o: src/ast_types/ASTFunCall.cpp.o
@@ -203,7 +203,7 @@ src/ast_types/ASTFunCall.o: src/ast_types/ASTFunCall.cpp.o
 
 # target to build an object file
 src/ast_types/ASTFunCall.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTFunCall.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTFunCall.cpp.o
 .PHONY : src/ast_types/ASTFunCall.cpp.o
 
 src/ast_types/ASTFunCall.i: src/ast_types/ASTFunCall.cpp.i
@@ -212,7 +212,7 @@ src/ast_types/ASTFunCall.i: src/ast_types/ASTFunCall.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTFunCall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTFunCall.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTFunCall.cpp.i
 .PHONY : src/ast_types/ASTFunCall.cpp.i
 
 src/ast_types/ASTFunCall.s: src/ast_types/ASTFunCall.cpp.s
@@ -221,7 +221,7 @@ src/ast_types/ASTFunCall.s: src/ast_types/ASTFunCall.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTFunCall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTFunCall.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTFunCall.cpp.s
 .PHONY : src/ast_types/ASTFunCall.cpp.s
 
 src/ast_types/ASTFunction.o: src/ast_types/ASTFunction.cpp.o
@@ -230,7 +230,7 @@ src/ast_types/ASTFunction.o: src/ast_types/ASTFunction.cpp.o
 
 # target to build an object file
 src/ast_types/ASTFunction.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTFunction.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTFunction.cpp.o
 .PHONY : src/ast_types/ASTFunction.cpp.o
 
 src/ast_types/ASTFunction.i: src/ast_types/ASTFunction.cpp.i
@@ -239,7 +239,7 @@ src/ast_types/ASTFunction.i: src/ast_types/ASTFunction.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTFunction.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTFunction.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTFunction.cpp.i
 .PHONY : src/ast_types/ASTFunction.cpp.i
 
 src/ast_types/ASTFunction.s: src/ast_types/ASTFunction.cpp.s
@@ -248,7 +248,7 @@ src/ast_types/ASTFunction.s: src/ast_types/ASTFunction.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTFunction.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTFunction.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTFunction.cpp.s
 .PHONY : src/ast_types/ASTFunction.cpp.s
 
 src/ast_types/ASTIf.o: src/ast_types/ASTIf.cpp.o
@@ -257,7 +257,7 @@ src/ast_types/ASTIf.o: src/ast_types/ASTIf.cpp.o
 
 # target to build an object file
 src/ast_types/ASTIf.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTIf.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTIf.cpp.o
 .PHONY : src/ast_types/ASTIf.cpp.o
 
 src/ast_types/ASTIf.i: src/ast_types/ASTIf.cpp.i
@@ -266,7 +266,7 @@ src/ast_types/ASTIf.i: src/ast_types/ASTIf.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTIf.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTIf.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTIf.cpp.i
 .PHONY : src/ast_types/ASTIf.cpp.i
 
 src/ast_types/ASTIf.s: src/ast_types/ASTIf.cpp.s
@@ -275,7 +275,7 @@ src/ast_types/ASTIf.s: src/ast_types/ASTIf.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTIf.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTIf.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTIf.cpp.s
 .PHONY : src/ast_types/ASTIf.cpp.s
 
 src/ast_types/ASTOperation.o: src/ast_types/ASTOperation.cpp.o
@@ -284,7 +284,7 @@ src/ast_types/ASTOperation.o: src/ast_types/ASTOperation.cpp.o
 
 # target to build an object file
 src/ast_types/ASTOperation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTOperation.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTOperation.cpp.o
 .PHONY : src/ast_types/ASTOperation.cpp.o
 
 src/ast_types/ASTOperation.i: src/ast_types/ASTOperation.cpp.i
@@ -293,7 +293,7 @@ src/ast_types/ASTOperation.i: src/ast_types/ASTOperation.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTOperation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTOperation.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTOperation.cpp.i
 .PHONY : src/ast_types/ASTOperation.cpp.i
 
 src/ast_types/ASTOperation.s: src/ast_types/ASTOperation.cpp.s
@@ -302,7 +302,7 @@ src/ast_types/ASTOperation.s: src/ast_types/ASTOperation.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTOperation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTOperation.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTOperation.cpp.s
 .PHONY : src/ast_types/ASTOperation.cpp.s
 
 src/ast_types/ASTPrint.o: src/ast_types/ASTPrint.cpp.o
@@ -311,7 +311,7 @@ src/ast_types/ASTPrint.o: src/ast_types/ASTPrint.cpp.o
 
 # target to build an object file
 src/ast_types/ASTPrint.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTPrint.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTPrint.cpp.o
 .PHONY : src/ast_types/ASTPrint.cpp.o
 
 src/ast_types/ASTPrint.i: src/ast_types/ASTPrint.cpp.i
@@ -320,7 +320,7 @@ src/ast_types/ASTPrint.i: src/ast_types/ASTPrint.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTPrint.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTPrint.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTPrint.cpp.i
 .PHONY : src/ast_types/ASTPrint.cpp.i
 
 src/ast_types/ASTPrint.s: src/ast_types/ASTPrint.cpp.s
@@ -329,7 +329,7 @@ src/ast_types/ASTPrint.s: src/ast_types/ASTPrint.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTPrint.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTPrint.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTPrint.cpp.s
 .PHONY : src/ast_types/ASTPrint.cpp.s
 
 src/ast_types/ASTReturn.o: src/ast_types/ASTReturn.cpp.o
@@ -338,7 +338,7 @@ src/ast_types/ASTReturn.o: src/ast_types/ASTReturn.cpp.o
 
 # target to build an object file
 src/ast_types/ASTReturn.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTReturn.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTReturn.cpp.o
 .PHONY : src/ast_types/ASTReturn.cpp.o
 
 src/ast_types/ASTReturn.i: src/ast_types/ASTReturn.cpp.i
@@ -347,7 +347,7 @@ src/ast_types/ASTReturn.i: src/ast_types/ASTReturn.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTReturn.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTReturn.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTReturn.cpp.i
 .PHONY : src/ast_types/ASTReturn.cpp.i
 
 src/ast_types/ASTReturn.s: src/ast_types/ASTReturn.cpp.s
@@ -356,7 +356,7 @@ src/ast_types/ASTReturn.s: src/ast_types/ASTReturn.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTReturn.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTReturn.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTReturn.cpp.s
 .PHONY : src/ast_types/ASTReturn.cpp.s
 
 src/ast_types/ASTVariable.o: src/ast_types/ASTVariable.cpp.o
@@ -365,7 +365,7 @@ src/ast_types/ASTVariable.o: src/ast_types/ASTVariable.cpp.o
 
 # target to build an object file
 src/ast_types/ASTVariable.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTVariable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTVariable.cpp.o
 .PHONY : src/ast_types/ASTVariable.cpp.o
 
 src/ast_types/ASTVariable.i: src/ast_types/ASTVariable.cpp.i
@@ -374,7 +374,7 @@ src/ast_types/ASTVariable.i: src/ast_types/ASTVariable.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTVariable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTVariable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTVariable.cpp.i
 .PHONY : src/ast_types/ASTVariable.cpp.i
 
 src/ast_types/ASTVariable.s: src/ast_types/ASTVariable.cpp.s
@@ -383,7 +383,7 @@ src/ast_types/ASTVariable.s: src/ast_types/ASTVariable.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTVariable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTVariable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTVariable.cpp.s
 .PHONY : src/ast_types/ASTVariable.cpp.s
 
 src/ast_types/ASTWhile.o: src/ast_types/ASTWhile.cpp.o
@@ -392,7 +392,7 @@ src/ast_types/ASTWhile.o: src/ast_types/ASTWhile.cpp.o
 
 # target to build an object file
 src/ast_types/ASTWhile.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTWhile.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTWhile.cpp.o
 .PHONY : src/ast_types/ASTWhile.cpp.o
 
 src/ast_types/ASTWhile.i: src/ast_types/ASTWhile.cpp.i
@@ -401,7 +401,7 @@ src/ast_types/ASTWhile.i: src/ast_types/ASTWhile.cpp.i
 
 # target to preprocess a source file
 src/ast_types/ASTWhile.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTWhile.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTWhile.cpp.i
 .PHONY : src/ast_types/ASTWhile.cpp.i
 
 src/ast_types/ASTWhile.s: src/ast_types/ASTWhile.cpp.s
@@ -410,7 +410,7 @@ src/ast_types/ASTWhile.s: src/ast_types/ASTWhile.cpp.s
 
 # target to generate assembly for a file
 src/ast_types/ASTWhile.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/ast_types/ASTWhile.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/ast_types/ASTWhile.cpp.s
 .PHONY : src/ast_types/ASTWhile.cpp.s
 
 src/lexer.o: src/lexer.cpp.o
@@ -419,7 +419,7 @@ src/lexer.o: src/lexer.cpp.o
 
 # target to build an object file
 src/lexer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/lexer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/lexer.cpp.o
 .PHONY : src/lexer.cpp.o
 
 src/lexer.i: src/lexer.cpp.i
@@ -428,7 +428,7 @@ src/lexer.i: src/lexer.cpp.i
 
 # target to preprocess a source file
 src/lexer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/lexer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/lexer.cpp.i
 .PHONY : src/lexer.cpp.i
 
 src/lexer.s: src/lexer.cpp.s
@@ -437,7 +437,7 @@ src/lexer.s: src/lexer.cpp.s
 
 # target to generate assembly for a file
 src/lexer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/lexer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/lexer.cpp.s
 .PHONY : src/lexer.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -446,7 +446,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -455,7 +455,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -464,7 +464,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 src/parse.o: src/parse.cpp.o
@@ -473,7 +473,7 @@ src/parse.o: src/parse.cpp.o
 
 # target to build an object file
 src/parse.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/parse.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/parse.cpp.o
 .PHONY : src/parse.cpp.o
 
 src/parse.i: src/parse.cpp.i
@@ -482,7 +482,7 @@ src/parse.i: src/parse.cpp.i
 
 # target to preprocess a source file
 src/parse.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/parse.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/parse.cpp.i
 .PHONY : src/parse.cpp.i
 
 src/parse.s: src/parse.cpp.s
@@ -491,7 +491,7 @@ src/parse.s: src/parse.cpp.s
 
 # target to generate assembly for a file
 src/parse.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/parse.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/parse.cpp.s
 .PHONY : src/parse.cpp.s
 
 src/symtable.o: src/symtable.cpp.o
@@ -500,7 +500,7 @@ src/symtable.o: src/symtable.cpp.o
 
 # target to build an object file
 src/symtable.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/symtable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/symtable.cpp.o
 .PHONY : src/symtable.cpp.o
 
 src/symtable.i: src/symtable.cpp.i
@@ -509,7 +509,7 @@ src/symtable.i: src/symtable.cpp.i
 
 # target to preprocess a source file
 src/symtable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/symtable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/symtable.cpp.i
 .PHONY : src/symtable.cpp.i
 
 src/symtable.s: src/symtable.cpp.s
@@ -518,7 +518,7 @@ src/symtable.s: src/symtable.cpp.s
 
 # target to generate assembly for a file
 src/symtable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/symtable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/symtable.cpp.s
 .PHONY : src/symtable.cpp.s
 
 src/token.o: src/token.cpp.o
@@ -527,7 +527,7 @@ src/token.o: src/token.cpp.o
 
 # target to build an object file
 src/token.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/token.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/token.cpp.o
 .PHONY : src/token.cpp.o
 
 src/token.i: src/token.cpp.i
@@ -536,7 +536,7 @@ src/token.i: src/token.cpp.i
 
 # target to preprocess a source file
 src/token.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/token.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/token.cpp.i
 .PHONY : src/token.cpp.i
 
 src/token.s: src/token.cpp.s
@@ -545,7 +545,7 @@ src/token.s: src/token.cpp.s
 
 # target to generate assembly for a file
 src/token.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/token.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/token.cpp.s
 .PHONY : src/token.cpp.s
 
 src/type.o: src/type.cpp.o
@@ -554,7 +554,7 @@ src/type.o: src/type.cpp.o
 
 # target to build an object file
 src/type.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/type.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/type.cpp.o
 .PHONY : src/type.cpp.o
 
 src/type.i: src/type.cpp.i
@@ -563,7 +563,7 @@ src/type.i: src/type.cpp.i
 
 # target to preprocess a source file
 src/type.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/type.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/type.cpp.i
 .PHONY : src/type.cpp.i
 
 src/type.s: src/type.cpp.s
@@ -572,7 +572,7 @@ src/type.s: src/type.cpp.s
 
 # target to generate assembly for a file
 src/type.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lang2_0.dir/build.make CMakeFiles/lang2_0.dir/src/type.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SLang.dir/build.make CMakeFiles/SLang.dir/src/type.cpp.s
 .PHONY : src/type.cpp.s
 
 # Help Target
@@ -583,7 +583,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... lang2_0"
+	@echo "... SLang"
 	@echo "... src/ast.o"
 	@echo "... src/ast.i"
 	@echo "... src/ast.s"

@@ -101,8 +101,10 @@ unique_ptr<ASTNode> Parser::ParseSimpleOrFunc() {
 
 vector<pair<string, string>> Parser::ParseFuncParameters() {
     vector<pair<string, string>> result;
-    if (GetNewAhead().lexeme == ")")
+    if (GetNewAhead().lexeme == ")") {
+        GetNewToken();
         return result;
+    }
 
     do {
         GetNewToken();
@@ -171,9 +173,9 @@ unique_ptr<ASTNode> Parser::ParseFuncCall() {
 
     GetNewToken();
     Match(TokenType::LBRACKET);
-    GetNewToken();
 
-    function_call_node->AddArgs(ParseArgs());
+    if (GetNewAhead().type != TokenType::RBRACKET)
+        function_call_node->AddArgs(ParseArgs());
 
     GetNewToken();
     Match(TokenType::RBRACKET);
