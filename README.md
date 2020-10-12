@@ -57,5 +57,6 @@ the best language in the world (potentially)
 ```
 
 ## TODO:
-Real numbers, arrays and strings' indexation support.
-Implementation of error recovery in the parser in panic mode.
+1. Real numbers, arrays and strings' indexation support.
+
+2. Implementation of error recovery in the parser in panic mode.
