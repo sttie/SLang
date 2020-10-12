@@ -1,5 +1,5 @@
 ## Example of code
-'''
+```
   string get_hello() {
       string hello_str = "Hello"
       return hello_str
@@ -11,7 +11,7 @@
   }
 
   print get_hello() + ", " + get_world() + "!"
-'''
+```
 
 **Output:**
-'''Hello, world!'''
+```Hello, world!```
