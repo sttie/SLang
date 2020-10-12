@@ -40,7 +40,7 @@ Type ASTOperation::Evaluate() const {
         return left / right;
     }
     if (operation == "<") {
-        return left > right;
+        return left < right;
     }
     if (operation == ">") {
         return left > right;
