@@ -4,7 +4,7 @@ SLang is the result of my interest in the theory of formal languages. This is ju
 
 ## Usage
 
-You can use the compiled file SLang and pass a filename with your SLang code to it:
+You can use the compiled file SLang and pass to it a name of a file with your SLang code:
 ```./Slang main.sl```
 
 ## Examples of code
