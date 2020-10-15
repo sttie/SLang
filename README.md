@@ -1,22 +1,26 @@
+## What is this?
+
+SLang is the result of my interest in the theory of formal languages. This is just a training project to gain experience in C++ development and to create a perfect programming language someday.
+
 ## Usage
 
-You can use the compiled file SLang and pass a filename with your SLang code to it:
+You can use the compiled file SLang and pass to it a name of a file with your SLang code:
 ```./Slang main.sl```
 
 ## Examples of code
 **example1.sl**
 ```
-  string get_hello() {
-      string hello_str = "Hello"
-      return hello_str
-  }
+string get_hello() {
+    string hello_str = "Hello"
+    return hello_str
+}
 
-  string get_world() {
-      string world_str = "world"
-      return world_str
-  }
+string get_world() {
+    string world_str = "world"
+    return world_str
+}
 
-  print get_hello() + ", " + get_world() + "!"
+print get_hello() + ", " + get_world() + "!"
 ```
 
 **Output:**
