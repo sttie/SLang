@@ -9,7 +9,7 @@ You can use the compiled file SLang and pass to it a name of a file with your SL
 
 ## Grammar
 
-'''
+```
 statements  := (statement | NEWLINE)* | e
 statement   := func_or_simple | print_stmt | if_statement | while_statement | return_statement
 
@@ -57,7 +57,7 @@ func_call       := id "(" args ")"
 literal         := \"<any sequence of symbols>\"
 comparison      := ">" | "<" | ">=" | "<=" | "==" | "!="
 logic_operation := "and" | "or" | "not"
-'''
+```
 
 ## Examples of code
 **example1.sl**
