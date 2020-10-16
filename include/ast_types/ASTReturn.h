@@ -11,11 +11,11 @@ public:
 
 class ASTReturn : public ASTNode {
 public:
-    ASTReturn(std::string return_id_, size_t lineno_);
+    ASTReturn(std::unique_ptr<ASTNode> return_expr_, size_t lineno_);
     ~ASTReturn() = default;
 
     Type Evaluate() const override;
 
 private:
-    std::string return_id;
+    std::unique_ptr<ASTNode> return_expr;
 };

@@ -8,9 +8,9 @@ ReturnException::ReturnException(Type returned_value_)
 {
 }
 
-ASTReturn::ASTReturn(string return_id_, size_t lineno_)
-        : ASTNode(lineno_), return_id(move(return_id_)) {}
+ASTReturn::ASTReturn(unique_ptr<ASTNode> return_expr_, size_t lineno_)
+        : ASTNode(lineno_), return_expr(move(return_expr_)) {}
 
 Type ASTReturn::Evaluate() const {
-    throw ReturnException{(*symtable)[return_id]};
+    throw ReturnException{return_expr->Evaluate()};
 }

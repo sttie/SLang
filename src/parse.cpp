@@ -63,9 +63,7 @@ unique_ptr<ASTNode> Parser::ParseStatement() {
 unique_ptr<ASTNode> Parser::ParseReturnStatement() {
     // Skip "return"
     GetNewToken();
-    Match(TokenType::NAME);
-
-    return make_unique<ASTReturn>(move(current_token.lexeme), lineno);
+    return make_unique<ASTReturn>(ParseExpr(), lineno);
 }
 
 
