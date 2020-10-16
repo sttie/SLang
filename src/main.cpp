@@ -2,6 +2,7 @@
 #include <fstream>
 
 #include "../include/parse.h"
+#include "../include/builtin_functions.h"
 
 using namespace std;
 

@@ -1,22 +1,23 @@
-#include "../../include/ast_types/ASTFunction.h"
+#include "../../include/ast_types/ASTFunctionDecl.h"
 #include "../../include/ast_types/ASTReturn.h"
 #include <algorithm>
 
 using namespace std;
 
 
-ASTFunction::ASTFunction(string func_id_, string return_type_, size_t lineno_)
+ASTFunctionDecl::ASTFunctionDecl(string func_id_, string return_type_, size_t lineno_)
         : ASTNode(lineno_),
           func_id(move(func_id_)),
-          return_type(move(return_type_))
+          return_type(move(return_type_)),
+          func_context(FunctionContext::GetContext())
 {
     // If the <func_id> function is already defined
-    if (func_table.count(func_id)) {
+    if (func_context.FuncTable().count(func_id)) {
         ThrowSemanticError(func_id + " function is already defined");
     }
 }
 
-void ASTFunction::AddParameters(vector<ParameterByPair> parameters_) {
+void ASTFunctionDecl::AddParameters(vector<ParameterByPair> parameters_) {
     for (auto& pair_parameter : parameters_) {
         parameters.push_back({
             move(pair_parameter.first), move(pair_parameter.second)
@@ -24,11 +25,11 @@ void ASTFunction::AddParameters(vector<ParameterByPair> parameters_) {
     }
 }
 
-void ASTFunction::AddStatements(Statements statements_) {
+void ASTFunctionDecl::AddStatements(Statements statements_) {
     statements = move(statements_);
 }
 
-Type ASTFunction::Evaluate() const {
+Type ASTFunctionDecl::Evaluate() const {
     InitializeParameters();
 
     for (const auto& node : statements) {
@@ -51,8 +52,12 @@ Type ASTFunction::Evaluate() const {
 
 
 // в func_stack должны находиться объекты Type!
-void ASTFunction::InitializeParameters() const {
+void ASTFunctionDecl::InitializeParameters() const {
     SaveSymtableOnStack();
+    auto& arguments_stack = func_context.ArgumentsStack();
+    auto& borders_stack = func_context.BordersStack();
+    size_t& left_argument = func_context.LeftArgument();
+    size_t& right_argument = func_context.RightArgument();
 
     if (right_argument - left_argument > parameters.size()) {
         ThrowSemanticError("too much arguments for " + func_id + " function");
@@ -63,34 +68,35 @@ void ASTFunction::InitializeParameters() const {
 
     for (size_t i = left_argument; i < right_argument; i++) {
         ThrowIfArgTypeMismatch(
-                func_stack[i].GetStringTypeName(),
+                arguments_stack[i].GetStringTypeName(),
                 parameters[i].type,
                 i);
 
         symtable->UpdateTable(parameters[i].name,
-                              func_stack[i]);
+                              arguments_stack[i]);
     }
 
     // Восстанавливаем состояние стека
     right_argument = left_argument;
-    left_argument = call_stack.empty() ? 0 : call_stack.back();
-    call_stack.pop_back();
-    func_stack.erase(func_stack.end() - parameters.size(), func_stack.end());
+    left_argument = borders_stack.empty() ? 0 : borders_stack.back();
+    borders_stack.pop_back();
+    arguments_stack.erase(arguments_stack.end() - parameters.size(), arguments_stack.end());
 }
 
-void ASTFunction::RestoreSymtable() {
-    symtable = move(symtable_func_stack.back());
-    symtable_func_stack.pop_back();
+void ASTFunctionDecl::RestoreSymtable() const {
+    auto& symtable_func_table = func_context.SymtableFuncStack();
+    symtable = move(symtable_func_table.back());
+    symtable_func_table.pop_back();
 }
 
-void ASTFunction::SaveSymtableOnStack() {
+void ASTFunctionDecl::SaveSymtableOnStack() const {
     // Saving old symtable
-    symtable_func_stack.push_back(move(symtable));
+    func_context.SymtableFuncStack().push_back(move(symtable));
     // Function will see only its arguments
     symtable = MakeNewSymTable();
 }
 
-void ASTFunction::ThrowIfReturnTypeMismatch(const Type& returned_value) const {
+void ASTFunctionDecl::ThrowIfReturnTypeMismatch(const Type& returned_value) const {
     string returned_typename = returned_value.GetStringTypeName();
     if (returned_typename != return_type) {
         ThrowSemanticError("\"" + func_id + "\" returns \"" + return_type +
@@ -100,7 +106,7 @@ void ASTFunction::ThrowIfReturnTypeMismatch(const Type& returned_value) const {
     }
 }
 
-void ASTFunction::ThrowIfNotVoid() const {
+void ASTFunctionDecl::ThrowIfNotVoid() const {
     if (return_type != "void") {
         ThrowSemanticError("No return statement with \"" +
                            return_type + "\" return type of the \"" +
@@ -109,7 +115,7 @@ void ASTFunction::ThrowIfNotVoid() const {
 }
 
 
-void ASTFunction::ThrowIfArgTypeMismatch(
+void ASTFunctionDecl::ThrowIfArgTypeMismatch(
         const string& top_arg_typename,
         const string& current_parameter_typename,
         size_t i) const {

@@ -11,8 +11,8 @@ Parser::Parser(istream& input_stream) : lexer(input_stream) {
 }
 
 
-list<unique_ptr<ASTNode>> Parser::ParseStatements(const string& stop_string) {
-    list<unique_ptr<ASTNode>> AST_nodes;
+Parser::Statements Parser::ParseStatements(const string& stop_string) {
+    Statements AST_nodes;
 
     while (true)
     {
@@ -99,7 +99,7 @@ unique_ptr<ASTNode> Parser::ParseSimpleOrFunc() {
 }
 
 
-vector<pair<string, string>> Parser::ParseFuncParameters() {
+Parser::FuncParameters Parser::ParseFuncParameters() {
     vector<pair<string, string>> result;
     if (GetNewAhead().lexeme == ")") {
         GetNewToken();
@@ -132,7 +132,7 @@ vector<pair<string, string>> Parser::ParseFuncParameters() {
 unique_ptr<ASTNode> Parser::ParseFuncDeclaration(string return_type) {
     // current_token.lexeme here is an id
     string func_id = move(current_token.lexeme);
-    auto function_node = make_unique<ASTFunction>(
+    auto function_node = make_unique<ASTFunctionDecl>(
             func_id, move(return_type), lineno
     );
 
@@ -157,7 +157,8 @@ unique_ptr<ASTNode> Parser::ParseFuncDeclaration(string return_type) {
     Match(TokenType::RBRACE);
 
     // Updating FuncTable
-    ASTNode::func_table[func_id] = move(function_node);
+    auto& func_table = FunctionContext::GetContext().FuncTable();
+    func_table[func_id] = move(function_node);
 
     return nullptr;
 }
@@ -174,8 +175,10 @@ unique_ptr<ASTNode> Parser::ParseFuncCall() {
     GetNewToken();
     Match(TokenType::LBRACKET);
 
-    if (GetNewAhead().type != TokenType::RBRACKET)
+    if (GetNewAhead().type != TokenType::RBRACKET) {
+        GetNewToken();
         function_call_node->AddArgs(ParseArgs());
+    }
 
     GetNewToken();
     Match(TokenType::RBRACKET);
@@ -219,7 +222,7 @@ unique_ptr<ASTNode> Parser::ParsePrintStmt() {
 
 
 // args := expr | ("," expr)*
-vector<unique_ptr<ASTNode>> Parser::ParseArgs() {
+Parser::Arguments Parser::ParseArgs() {
     vector<unique_ptr<ASTNode>> arg_nodes;
     arg_nodes.push_back(ParseExpr());
 
@@ -300,7 +303,7 @@ unique_ptr<ASTNode> Parser::ParseElifStmt() {
 }
 
 
-list<unique_ptr<ASTNode>> Parser::ParseElseStmt() {
+Parser::Statements Parser::ParseElseStmt() {
     // Skipping else and newlines
     GetNewToken();
     SkipWhitespaces();
@@ -308,7 +311,7 @@ list<unique_ptr<ASTNode>> Parser::ParseElseStmt() {
     Match(TokenType::LBRACE);
     GetNewToken();
 
-    list<unique_ptr<ASTNode>> else_statements = ParseStatements("}");
+    Statements else_statements = ParseStatements("}");
 
     Match(TokenType::RBRACE);
 
@@ -586,7 +589,7 @@ void Parser::SkipWhitespaces() {
     }
 }
 
-void Parser::ThrowParseError(string&& error_message) const {
+void Parser::ThrowParseError(const string& error_message) const {
     throw logic_error("line " + to_string(lineno) + ": " + GetCurrentLine() + "\n"
                       + string(7 + to_string(lineno).size() + current_token.start, ' ')
                       + "^\n" + error_message);

@@ -2,7 +2,7 @@
 
 #include "ast.h"
 #include "ast_types/ASTAssignment.h"
-#include "ast_types/ASTFunction.h"
+#include "ast_types/ASTFunctionDecl.h"
 #include "ast_types/ASTIf.h"
 #include "ast_types/ASTOperation.h"
 #include "ast_types/ASTPrint.h"
@@ -22,9 +22,13 @@
 
 class Parser {
 public:
+    using Statements = std::list<std::unique_ptr<ASTNode>>;
+    using Arguments = std::vector<std::unique_ptr<ASTNode>>;
+    using FuncParameters = std::vector<std::pair<std::string, std::string>>;
+
     Parser(std::istream& input_stream);
 
-    std::list<std::unique_ptr<ASTNode>> ParseStatements(const std::string& stop_string = "$");
+    Statements ParseStatements(const std::string& stop_string = "$");
 
 private:
     std::unique_ptr<ASTNode> ParseStatement();
@@ -32,13 +36,13 @@ private:
     std::unique_ptr<ASTNode> ParsePrintStmt();
     std::unique_ptr<ASTNode> ParseIfStmt();
     std::unique_ptr<ASTNode> ParseElifStmt();
-    std::list<std::unique_ptr<ASTNode>>  ParseElseStmt();
+    Statements  ParseElseStmt();
     std::unique_ptr<ASTNode> ParseWhileStmt();
 
     std::unique_ptr<ASTNode> ParseSimpleOrFunc();
     std::unique_ptr<ASTNode> ParseReturnStatement();
 
-    std::vector<std::unique_ptr<ASTNode>> ParseArgs();
+    Arguments ParseArgs();
     std::unique_ptr<ASTNode> ParseAssignmentStmt(std::string type, bool declaration);
 
     template <typename Func, typename WhileFunc>
@@ -55,9 +59,9 @@ private:
 
     std::unique_ptr<ASTNode> ParseVariable();
     std::unique_ptr<ASTNode> ParseNumber();
-    std::vector<std::pair<std::string, std::string>> ParseFuncParameters();
+    FuncParameters ParseFuncParameters();
 
-    void ThrowParseError(std::string&& error_message) const;
+    void ThrowParseError(const std::string& error_message) const;
     void Match(const TokenType& right) const;
     void Match(const std::string& right) const;
     bool IsReserved(const std::string& lexeme) const;
@@ -72,7 +76,7 @@ private:
     Token current_token;
     size_t lineno = 1;
 
-    std::vector<std::string> reserved = {
+    const std::vector<std::string> reserved = {
             "if",
             "while",
             "true",
@@ -86,7 +90,7 @@ private:
             "elif",
             "else"
     };
-    std::vector<std::string> available_types = {
+    const std::vector<std::string> available_types = {
             "string",
             "bool",
             "int",

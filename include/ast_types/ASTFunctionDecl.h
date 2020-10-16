@@ -1,9 +1,10 @@
 #pragma once
 
 #include "../ast.h"
+#include "../../include/ast_types/FunctionContext.h"
 
 
-class ASTFunction : public ASTNode {
+class ASTFunctionDecl : public ASTNode {
 public:
     using ParameterByPair = std::pair<std::string, std::string>;
     using ASTNode::Statements;
@@ -13,8 +14,8 @@ public:
         std::string name;
     };
 
-    ASTFunction(std::string func_id_, std::string return_type_, size_t lineno_);
-    ~ASTFunction() = default;
+    ASTFunctionDecl(std::string func_id_, std::string return_type_, size_t lineno_);
+    ~ASTFunctionDecl() = default;
 
     void AddParameters(std::vector<ParameterByPair> parameters_);
     void AddStatements(Statements statements_);
@@ -24,14 +25,15 @@ public:
 private:
     // This function gets ASTVariables from ASTNode::func_stack
     void InitializeParameters() const;
-    static void RestoreSymtable();
-    static void SaveSymtableOnStack();
+    void RestoreSymtable() const;
+    void SaveSymtableOnStack() const;
     void ThrowIfReturnTypeMismatch(const Type& returned_value) const;
     void ThrowIfArgTypeMismatch(const std::string& top_arg_typename,
                                 const std::string& current_parameter_typename,
                                 size_t i) const;
     void ThrowIfNotVoid() const;
 
+    FunctionContext& func_context;
 
     std::string func_id;
     std::string return_type;

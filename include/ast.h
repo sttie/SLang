@@ -4,10 +4,12 @@
 #include <map>
 #include <memory>
 #include <list>
+#include <functional>
 #include <iostream>
 
 #include "type.h"
 #include "symtable.h"
+
 
 class FuncTable;
 
@@ -15,8 +17,6 @@ class FuncTable;
 class ASTNode {
 public:
     using SymTablePtr = std::unique_ptr<SymTable>;
-    using FuncTable = std::map<std::string, std::unique_ptr<ASTNode>>;
-    using ArgumentsStack = std::vector<Type>;
     using Statements = std::list<std::unique_ptr<ASTNode>>;
 
     ASTNode(size_t lineno_);
@@ -31,14 +31,6 @@ public:
     virtual Type Evaluate() const = 0;
 
     static SymTablePtr symtable;
-    static std::vector<SymTablePtr> symtable_func_stack;
-    static FuncTable func_table;
-    static ArgumentsStack func_stack;
-    static size_t left_argument;
-    static size_t right_argument;
-    static std::vector<size_t> call_stack;
-
-    static void InitStaticValues();
 
 protected:
     void ThrowSemanticError(const std::string& error_message) const;
@@ -49,7 +41,7 @@ protected:
 
 
 class ASTAssignment;
-class ASTFunction;
+class ASTFunctionDecl;
 class ASTFunCall;
 class ASTIf;
 class ASTOperation;

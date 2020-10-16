@@ -1,0 +1,38 @@
+#include "../include/builtin_functions.h"
+
+#include <variant>
+
+using namespace std;
+
+
+Type BuiltinInt(const vector<Type>& args) {
+    const Type& to_int = args[0];
+    if (to_int.GetTypeName() == TypeName::INT)
+        return to_int;
+
+    const auto& value = to_int.Value();
+    return to_int.GetTypeName() == TypeName::STRING
+           ? Type(TypeName::INT, get<string>(value))
+           : Type(TypeName::INT, Type::ToString(int(get<bool>(value))));
+}
+
+Type BuiltinString(const vector<Type>& args) {
+    const Type& to_string = args[0];
+    if (to_string.GetTypeName() == TypeName::STRING)
+        return to_string;
+
+    const auto& value = to_string.Value();
+    return to_string.GetTypeName() == TypeName::INT
+           ? Type(TypeName::STRING, Type::ToString(get<int>(value)))
+           : Type(TypeName::STRING, Type::ToString(get<bool>(value)));
+}
+
+Type BuiltinBool(const vector<Type>& args) {
+    const Type& to_bool = args[0];
+    if (to_bool.GetTypeName() == TypeName::BOOL)
+        return to_bool;
+
+    bool result = bool(to_bool);
+    return result ? Type(TypeName::BOOL, "true")
+                  : Type(TypeName::BOOL, "false");
+}
