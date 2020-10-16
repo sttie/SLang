@@ -1,7 +1,7 @@
 #pragma once
 
-#include "type.h"
-#include "ast.h"
+#include "../type.h"
+#include "../ast.h"
 
 #include <map>
 #include <vector>
