@@ -45,7 +45,7 @@ compare_term := add_term (("+" | "-") add_term)*
 add_term     := mult_term (("*" | "/") mult_term)*
 
 mult_term    := "(" expr ")"
-                 | ("-" | "not") factor
+                 | ("-" | "not") mult_term
                  | number
                  | id
                  | func_call
