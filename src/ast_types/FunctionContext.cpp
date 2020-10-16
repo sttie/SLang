@@ -1,9 +1,10 @@
 #include "../include/ast_types/FunctionContext.h"
 #include "../include/builtin_functions.h"
 
+using namespace std;
+
 using SymTablePtr = FunctionContext::SymTablePtr;
 using TFuncTable = FunctionContext::TFuncTable;
-using TBuiltInFunc = FunctionContext::TBuiltInFunc;
 using TBuiltinFuncTable = FunctionContext::TBuiltinFuncTable;
 using TBordersStack = FunctionContext::TBordersStack;
 using TArgumentsStack = FunctionContext::TArgumentsStack;
@@ -22,7 +23,7 @@ FunctionContext& FunctionContext::GetContext() {
     return context_instance;
 }
 
-std::vector<SymTablePtr>& FunctionContext::SymtableFuncStack() {
+vector<SymTablePtr>& FunctionContext::SymtableFuncStack() {
     return symtable_func_stack;
 }
 

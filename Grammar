@@ -38,8 +38,8 @@ mult_term    := "(" expr ")"
                  | id
                  | func_call
                  | literal
-                 | true
-                 | false
+                 | "true"
+                 | "false"
 
 func_call       := id "(" args ")"
 literal         := \"<any sequence of symbols>\"
