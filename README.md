@@ -7,6 +7,58 @@ SLang is the result of my interest in the theory of formal languages. This is ju
 You can use the compiled file SLang and pass to it a name of a file with your SLang code:
 ```./Slang main.sl```
 
+## Grammar
+
+```
+statements  := (statement | NEWLINE)* | e
+statement   := func_or_simple | print_stmt | if_statement | while_statement | return_statement
+
+func_or_simple := func_declaration | assignment_expr | expr
+
+print_stmt      := "print" args
+
+if_statement    := "if" "(" expr ")" NEWLINE*
+                   "{" statements "}"
+
+                   ("elif" "(" expr ")" NEWLINE*
+                     "{" statements "}")*
+
+                   [else "{" statements "}"]
+
+while_statement := "while" "(" expr ")" NEWLINE*
+                    "{" statements "}"
+
+func_declaration := type id "(" func_parameters ")" NEWLINE*
+                            "{" statements "}"
+func_parameters := (type id ("," type id)*)*
+
+return_statement := "return" expr
+
+args := expr | ("," expr)*
+assignment_expr := (type)? id "=" expr
+
+
+expr         := logical_expr ("and" logical_expr)*
+logical_expr := logical_term (("or" | "not") logical term)*
+logical_term := compare_term (comparison compare_term)*
+compare_term := add_term (("+" | "-") add_term)*
+add_term     := mult_term (("*" | "/") mult_term)*
+
+mult_term    := "(" expr ")"
+                 | ("-" | "not") factor
+                 | number
+                 | id
+                 | func_call
+                 | literal
+                 | true
+                 | false
+
+func_call       := id "(" args ")"
+literal         := \"<any sequence of symbols>\"
+comparison      := ">" | "<" | ">=" | "<=" | "==" | "!="
+logic_operation := "and" | "or" | "not"
+```
+
 ## Examples of code
 **example1.sl**
 ```
