@@ -63,7 +63,7 @@ logic_operation := "and" | "or" | "not"
 
 ## Avaliable types
 
-Only int, bool and string variables are available for now (look at TODO list).
+Only int, bool and string variables are available for now (look at the TODO list).
 
 
 ## Examples of code
