@@ -153,3 +153,5 @@ Enter the second number:
 1. Real numbers, arrays and strings' indexation support.
 
 2. Implementation of error recovery in the parser in panic mode.
+
+3. Reference types
