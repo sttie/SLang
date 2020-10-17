@@ -112,6 +112,36 @@ the best language in the world (potentially)
 the best language in the world (potentially)
 ```
 
+**example3.sl**
+```
+int sum(int a, int b) {
+	return a + b
+}
+
+string a = ""
+string b = ""
+
+print "Enter the first number:"
+input a
+print "Enter the second number:"
+input b
+
+print sum(toInt(a), toInt(b))
+```
+
+**Input:**
+```
+Enter the first number: 
+42
+Enter the second number: 
+100
+```
+
+**Output:**
+```
+142
+```
+
 ## TODO:
 1. Real numbers, arrays and strings' indexation support.
 
