@@ -11,11 +11,12 @@ You can use the executable file SLang and pass to it a name of a file with your 
 
 ```
 statements  := (statement | NEWLINE)* | e
-statement   := func_or_simple | print_stmt | if_statement | while_statement | return_statement
+statement   := func_or_simple | print_stmt | if_statement | while_statement | return_statement | input_statement
 
 func_or_simple := func_declaration | assignment_expr | expr
 
 print_stmt      := "print" args
+input_statement := "input" id
 
 if_statement    := "if" "(" expr ")" NEWLINE*
                    "{" statements "}"
