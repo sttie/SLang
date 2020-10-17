@@ -609,7 +609,10 @@ void Parser::SkipWhitespaces() {
 }
 
 void Parser::ThrowParseError(const string& error_message) const {
-    throw logic_error("line " + to_string(lineno) + ": " + GetCurrentLine() + "\n"
+    string current_line = current_token.type == TokenType::NEWLINE
+                          ? lexer.GetPrevLine()
+                          : lexer.GetCurrentLine();
+    throw logic_error("line " + to_string(lineno) + ": " + current_line + "\n"
                       + string(7 + to_string(lineno).size() + current_token.start, ' ')
                       + "^\n" + error_message);
 }

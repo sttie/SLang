@@ -20,6 +20,7 @@ void Lexer::LoadBuffer() {
 }
 
 Token Lexer::LoadWithNewline() {
+    prev_buffer = move(buffer);
     LoadBuffer();
     return Token{"\n", TokenType::NEWLINE, buffer.size()};
 }
@@ -38,6 +39,10 @@ Token Lexer::GetAhead() {
 
 const string& Lexer::GetCurrentLine() const {
     return buffer;
+}
+
+const std::string& Lexer::GetPrevLine() const {
+    return prev_buffer;
 }
 
 

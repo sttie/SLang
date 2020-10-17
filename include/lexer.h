@@ -19,6 +19,7 @@ public:
     Token GetAhead();
 
     const std::string& GetCurrentLine() const;
+    const std::string& GetPrevLine() const;
 
 private:
     void LoadBuffer();
@@ -35,6 +36,7 @@ private:
     static bool IsOkayForId(char symbol);
 
     std::istream& input;
+    std::string prev_buffer;
     std::string buffer;
     size_t current_sym = 0;
     bool last_quote = false;

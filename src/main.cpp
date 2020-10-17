@@ -20,14 +20,17 @@ void EvaluateProgram(list<unique_ptr<ASTNode>>& stmts)
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
-        cout << argc << endl;
         cout << "You have to specify a .txt file!" << endl;
         return 0;
     }
 
     ifstream file(argv[1]);
-    Parser parser(file);
+    if (!file) {
+        cout << "Cannot find a " << string(argv[1]) << " file" << endl;
+        return 0;
+    }
 
+    Parser parser(file);
     try {
         list<unique_ptr<ASTNode>> stmts = parser.ParseStatements();
         EvaluateProgram(stmts);
