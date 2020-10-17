@@ -159,7 +159,7 @@ Enter the second number:
 ```
 
 ## TODO:
-1. Real numbers, arrays and strings' indexation support.
+1. Real numbers and arrays support.
 
 2. Implementation of error recovery in the parser in panic mode.
 
