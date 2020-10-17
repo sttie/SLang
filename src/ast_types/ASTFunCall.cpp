@@ -1,6 +1,8 @@
 #include "../../include/ast_types/ASTFunCall.h"
 #include "../../include/ast_types/FunctionContext.h"
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -18,12 +20,12 @@ Type ASTFunCall::Evaluate() const {
 
     if (func_context.BuiltinFuncTable().count(func_id)
                 && func_context.BuiltinFuncTable()[func_id].second == args.size()) {
-        // TODO: init with lambda?
         vector<Type> type_arguments;
         for (const auto& arg : args) {
             type_arguments.push_back(arg->Evaluate());
         }
-        return func_context.BuiltinFuncTable()[func_id].first(type_arguments);;
+
+        return func_context.BuiltinFuncTable()[func_id].first(type_arguments);
     }
 
     // If the func_id function is not defined

@@ -13,7 +13,8 @@ FunctionContext::FunctionContext()
     : builtin_func_table({
           {"toInt", {BuiltinInt, 1}},
           {"toBool", {BuiltinBool, 1}},
-          {"toString", {BuiltinString, 1}}
+          {"toString", {BuiltinString, 1}},
+          {"at", {BuiltinStringAt, 2}}
     })
 {
 }

@@ -11,7 +11,12 @@ void EvaluateProgram(list<unique_ptr<ASTNode>>& stmts)
 {
     for (unique_ptr<ASTNode>& node : stmts) {
         if (node != nullptr) {
-            node->Evaluate();
+            try {
+                node->Evaluate();
+            } catch (const exception& ex) {
+                cout << "line " << node->GetLine() << ": "
+                     << ex.what() << endl;
+            }
             node.reset();
         }
     }
@@ -34,8 +39,7 @@ int main(int argc, char* argv[]) {
     try {
         list<unique_ptr<ASTNode>> stmts = parser.ParseStatements();
         EvaluateProgram(stmts);
-    }
-    catch (const exception& e) {
+    } catch (const exception& e) {
         cout << e.what() << endl;
     }
 

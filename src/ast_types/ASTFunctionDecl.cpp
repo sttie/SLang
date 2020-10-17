@@ -76,11 +76,11 @@ void ASTFunctionDecl::InitializeParameters() const {
                               arguments_stack[i]);
     }
 
-    // Восстанавливаем состояние стека
+    // Restoring the stack's state
     right_argument = left_argument;
     left_argument = borders_stack.empty() ? 0 : borders_stack.back();
     borders_stack.pop_back();
-    arguments_stack.erase(arguments_stack.end() - parameters.size(), arguments_stack.end());
+    arguments_stack.resize(arguments_stack.size() - parameters.size());
 }
 
 void ASTFunctionDecl::RestoreSymtable() const {
