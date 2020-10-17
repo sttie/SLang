@@ -61,6 +61,11 @@ comparison      := ">" | "<" | ">=" | "<=" | "==" | "!="
 logic_operation := "and" | "or" | "not"
 ```
 
+## Avaliable types
+
+Only int, bool and string variables are available for now (look at TODO list).
+
+
 ## Examples of code
 **example1.sl**
 ```
