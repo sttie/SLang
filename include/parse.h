@@ -10,6 +10,7 @@
 #include "ast_types/ASTVariable.h"
 #include "ast_types/ASTWhile.h"
 #include "ast_types/ASTFunCall.h"
+#include "ast_types/ASTInput.h"
 
 #include "token.h"
 #include "lexer.h"
@@ -34,9 +35,10 @@ private:
     std::unique_ptr<ASTNode> ParseStatement();
 
     std::unique_ptr<ASTNode> ParsePrintStmt();
+    std::unique_ptr<ASTNode> ParseInputStmt();
     std::unique_ptr<ASTNode> ParseIfStmt();
     std::unique_ptr<ASTNode> ParseElifStmt();
-    Statements  ParseElseStmt();
+    Statements ParseElseStmt();
     std::unique_ptr<ASTNode> ParseWhileStmt();
 
     std::unique_ptr<ASTNode> ParseSimpleOrFunc();

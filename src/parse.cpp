@@ -37,6 +37,9 @@ unique_ptr<ASTNode> Parser::ParseStatement() {
     else if (current_token.lexeme == "print") {
         statement_node = ParsePrintStmt();
     }
+    else if (current_token.lexeme == "input") {
+        statement_node = ParseInputStmt();
+    }
     else if (current_token.lexeme == "if") {
         statement_node = ParseIfStmt();
         not_if = false;
@@ -194,6 +197,7 @@ unique_ptr<ASTNode> Parser::ParseAssignmentStmt(string type, bool declaration) {
     // current_token is id and next_token is =
     auto assignment_node = make_unique<ASTAssignment>(
             declaration, move(current_token.lexeme), move(type), lineno
+
     );
     assignment_node->AddChild(ParseVariable());
 
@@ -216,6 +220,16 @@ unique_ptr<ASTNode> Parser::ParsePrintStmt() {
     print_node->AddChildren(ParseArgs());
 
     return print_node;
+}
+
+
+// input_statement := "input" id
+unique_ptr<ASTNode> Parser::ParseInputStmt() {
+    // Skip "input"
+    GetNewToken();
+    Match(TokenType::NAME);
+
+    return make_unique<ASTInput>(move(current_token.lexeme), lineno);
 }
 
 
@@ -478,11 +492,18 @@ unique_ptr<ASTNode> Parser::ParseMultTerm() {
     else if (current_token.type == TokenType::QUOTE) {
         GetNewToken();
 
-        mult_term_node = make_unique<ASTVariable>(
-            Type{"string", move(current_token.lexeme)}, lineno
-        );
+        if (current_token.type != TokenType::QUOTE) {
+            mult_term_node = make_unique<ASTVariable>(
+                    Type{"string", move(current_token.lexeme)}, lineno
+            );
+            GetNewToken();
+        }
+        else {
+            mult_term_node = make_unique<ASTVariable>(
+                    Type{"string", ""}, lineno
+            );
+        }
 
-        GetNewToken();
         Match("\"");
     }
 
