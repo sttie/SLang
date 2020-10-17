@@ -11,7 +11,8 @@ You can use the executable file SLang and pass to it a name of a file with your 
 
 ```
 statements  := (statement | NEWLINE)* | e
-statement   := func_or_simple | print_stmt | if_statement | while_statement | return_statement | input_statement
+statement   := func_or_simple | print_stmt | if_statement
+	       | while_statement | return_statement | input_statement
 
 func_or_simple := func_declaration | assignment_expr | expr
 
@@ -116,7 +117,7 @@ the best language in the world (potentially)
 **example3.sl**
 ```
 int sum(int a, int b) {
-	return a + b
+    return a + b
 }
 
 string a = ""
