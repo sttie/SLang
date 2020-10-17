@@ -65,6 +65,15 @@ logic_operation := "and" | "or" | "not"
 
 Only int, bool and string variables are available for now (look at the TODO list).
 
+## Builtin functions
+
+```toInt(v)``` - cast v to int
+
+```toBool(v)``` - cast v to bool
+
+```toString(v)``` - cast v to string
+
+```at(str, i)``` - get the i-th symbol of the "str" string
 
 ## Examples of code
 **example1.sl**
