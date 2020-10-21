@@ -5,7 +5,7 @@ SLang is the result of my interest in the theory of formal languages. This is ju
 ## Usage
 
 You can use the executable file SLang and pass to it a name of a file with your SLang code:
-```./Slang main.sl```
+```./SLang main.sl```
 
 ## Grammar
 
@@ -25,7 +25,7 @@ if_statement    := "if" "(" expr ")" NEWLINE*
                    ("elif" "(" expr ")" NEWLINE*
                      "{" statements "}")*
 
-                   [else "{" statements "}"]
+                   [else NEWLINE* "{" statements "}"]
 
 while_statement := "while" "(" expr ")" NEWLINE*
                     "{" statements "}"
