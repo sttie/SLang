@@ -5,7 +5,7 @@ SLang is the result of my interest in the theory of formal languages. This is ju
 ## Usage
 
 You can use the executable file SLang and pass to it a name of a file with your SLang code:
-```./Slang main.sl```
+```./SLang main.sl```
 
 ## Grammar
 
@@ -25,7 +25,7 @@ if_statement    := "if" "(" expr ")" NEWLINE*
                    ("elif" "(" expr ")" NEWLINE*
                      "{" statements "}")*
 
-                   [else "{" statements "}"]
+                   [else NEWLINE* "{" statements "}"]
 
 while_statement := "while" "(" expr ")" NEWLINE*
                     "{" statements "}"
@@ -159,7 +159,7 @@ Enter the second number:
 ```
 
 ## TODO:
-1. Real numbers, arrays and strings' indexation support.
+1. Real numbers and arrays support.
 
 2. Implementation of error recovery in the parser in panic mode.
 
