@@ -16,6 +16,7 @@ void EvaluateProgram(list<unique_ptr<ASTNode>>& stmts)
             } catch (const exception& ex) {
                 cout << "line " << node->GetLine() << ": "
                      << ex.what() << endl;
+                break;
             }
             node.reset();
         }
@@ -31,7 +32,7 @@ int main(int argc, char* argv[]) {
 
     ifstream file(argv[1]);
     if (!file) {
-        cout << "Cannot find a " << string(argv[1]) << " file" << endl;
+        cout << "Cannot find the " << string(argv[1]) << " file" << endl;
         return 0;
     }
 
