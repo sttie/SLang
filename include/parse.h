@@ -23,8 +23,9 @@
 
 class Parser {
 public:
-    using Statements = std::list<std::unique_ptr<ASTNode>>;
-    using Arguments = std::vector<std::unique_ptr<ASTNode>>;
+    using ASTNodePtr = std::unique_ptr<ASTNode>;
+    using Statements = std::list<ASTNodePtr>;
+    using Arguments = std::vector<ASTNodePtr>;
     using FuncParameters = std::vector<std::pair<std::string, std::string>>;
 
     Parser(std::istream& input_stream);
@@ -32,35 +33,35 @@ public:
     Statements ParseStatements(const std::string& stop_string = "$");
 
 private:
-    std::unique_ptr<ASTNode> ParseStatement();
+    ASTNodePtr ParseStatement();
 
-    std::unique_ptr<ASTNode> ParsePrintStmt();
-    std::unique_ptr<ASTNode> ParseInputStmt();
-    std::unique_ptr<ASTNode> ParseIfStmt();
-    std::unique_ptr<ASTNode> ParseElifStmt();
+    ASTNodePtr ParsePrintStmt();
+    ASTNodePtr ParseInputStmt();
+    ASTNodePtr ParseIfStmt();
+    ASTNodePtr ParseElifStmt();
     Statements ParseElseStmt();
-    std::unique_ptr<ASTNode> ParseWhileStmt();
+    ASTNodePtr ParseWhileStmt();
 
-    std::unique_ptr<ASTNode> ParseSimpleOrFunc();
-    std::unique_ptr<ASTNode> ParseReturnStatement();
+    ASTNodePtr ParseSimpleOrFunc();
+    ASTNodePtr ParseReturnStatement();
 
     Arguments ParseArgs();
-    std::unique_ptr<ASTNode> ParseAssignmentStmt(std::string type, bool declaration);
+    ASTNodePtr ParseAssignmentStmt(std::string type, bool declaration);
 
     template <typename Func, typename WhileFunc>
-    std::unique_ptr<ASTNode> ParseTemplateExpr(Func ParseSubExpr, WhileFunc CheckStopSymbol);
-    std::unique_ptr<ASTNode> ParseExpr();
-    std::unique_ptr<ASTNode> ParseLogicalExpr();
-    std::unique_ptr<ASTNode> ParseLogicalTerm();
-    std::unique_ptr<ASTNode> ParseCompareTerm();
-    std::unique_ptr<ASTNode> ParseAddTerm();
-    std::unique_ptr<ASTNode> ParseMultTerm();
+    ASTNodePtr ParseTemplateExpr(Func ParseSubExpr, WhileFunc CheckStopSymbol);
+    ASTNodePtr ParseExpr();
+    ASTNodePtr ParseLogicalExpr();
+    ASTNodePtr ParseLogicalTerm();
+    ASTNodePtr ParseCompareTerm();
+    ASTNodePtr ParseAddTerm();
+    ASTNodePtr ParseMultTerm();
 
-    std::unique_ptr<ASTNode> ParseFuncDeclaration(std::string type);
-    std::unique_ptr<ASTNode> ParseFuncCall();
+    ASTNodePtr ParseFuncDeclaration(std::string type);
+    ASTNodePtr ParseFuncCall();
 
-    std::unique_ptr<ASTNode> ParseVariable();
-    std::unique_ptr<ASTNode> ParseNumber();
+    ASTNodePtr ParseVariable();
+    ASTNodePtr ParseNumber();
     FuncParameters ParseFuncParameters();
 
     void ThrowParseError(const std::string& error_message) const;

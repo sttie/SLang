@@ -3,7 +3,9 @@
 #include <algorithm>
 #include <iostream>
 
+
 using namespace std;
+using ASTNodePtr = Parser::ASTNodePtr;
 
 
 Parser::Parser(istream& input_stream) : lexer(input_stream) {
@@ -26,10 +28,9 @@ Parser::Statements Parser::ParseStatements(const string& stop_string) {
 }
 
 
-unique_ptr<ASTNode> Parser::ParseStatement() {
-    unique_ptr<ASTNode> statement_node;
+ASTNodePtr Parser::ParseStatement() {
+    ASTNodePtr statement_node;
     bool not_if = true;
-
 
     if (current_token.lexeme == "return") {
         statement_node = ParseReturnStatement();
@@ -63,7 +64,7 @@ unique_ptr<ASTNode> Parser::ParseStatement() {
 }
 
 
-unique_ptr<ASTNode> Parser::ParseReturnStatement() {
+ASTNodePtr Parser::ParseReturnStatement() {
     // Skip "return"
     GetNewToken();
     return make_unique<ASTReturn>(ParseExpr(), lineno);
@@ -71,7 +72,7 @@ unique_ptr<ASTNode> Parser::ParseReturnStatement() {
 
 
 // func_or_simple := func_declaration | assignment_expr | expr
-unique_ptr<ASTNode> Parser::ParseSimpleOrFunc() {
+ASTNodePtr Parser::ParseSimpleOrFunc() {
     // If so, here we have func_decl or assignment_expr
     if (IsAvailableType(current_token.lexeme)) {
         // The type of func/var
@@ -101,7 +102,7 @@ unique_ptr<ASTNode> Parser::ParseSimpleOrFunc() {
 
 
 Parser::FuncParameters Parser::ParseFuncParameters() {
-    vector<pair<string, string>> result;
+    FuncParameters result;
     if (GetNewAhead().lexeme == ")") {
         GetNewToken();
         return result;
@@ -130,7 +131,7 @@ Parser::FuncParameters Parser::ParseFuncParameters() {
 
 
 // func_declaration := type id "(" (type id ("," type id)*)* ")" "{" statements "}"
-unique_ptr<ASTNode> Parser::ParseFuncDeclaration(string return_type) {
+ASTNodePtr Parser::ParseFuncDeclaration(string return_type) {
     // current_token.lexeme here is an id
     string func_id = move(current_token.lexeme);
     auto function_node = make_unique<ASTFunctionDecl>(
@@ -140,7 +141,7 @@ unique_ptr<ASTNode> Parser::ParseFuncDeclaration(string return_type) {
     // Skipping id
     GetNewToken();
 
-    vector<pair<string, string>> args = ParseFuncParameters();
+    auto args = ParseFuncParameters();
     Match(TokenType::RBRACKET);
     function_node->AddParameters(move(args));
 
@@ -166,7 +167,7 @@ unique_ptr<ASTNode> Parser::ParseFuncDeclaration(string return_type) {
 
 
 // func_call := id "(" args ")"
-unique_ptr<ASTNode> Parser::ParseFuncCall() {
+ASTNodePtr Parser::ParseFuncCall() {
     // current_token.lexeme here is an id
     string func_id = move(current_token.lexeme);
     auto function_call_node = make_unique<ASTFunCall>(
@@ -189,7 +190,7 @@ unique_ptr<ASTNode> Parser::ParseFuncCall() {
 
 
 // assignment_expr := (type)? id "=" expr
-unique_ptr<ASTNode> Parser::ParseAssignmentStmt(string type, bool declaration) {
+ASTNodePtr Parser::ParseAssignmentStmt(string type, bool declaration) {
     if (IsReserved(current_token.lexeme)) {
         ThrowParseError(current_token.lexeme + " is a reserved keyword");
     }
@@ -211,7 +212,7 @@ unique_ptr<ASTNode> Parser::ParseAssignmentStmt(string type, bool declaration) {
 
 
 // print_stmt := "print" args
-unique_ptr<ASTNode> Parser::ParsePrintStmt() {
+ASTNodePtr Parser::ParsePrintStmt() {
     auto print_node = make_unique<ASTPrint>(lineno);
 
     // Skipping "print"
@@ -224,7 +225,7 @@ unique_ptr<ASTNode> Parser::ParsePrintStmt() {
 
 
 // input_statement := "input" id
-unique_ptr<ASTNode> Parser::ParseInputStmt() {
+ASTNodePtr Parser::ParseInputStmt() {
     // Skip "input"
     GetNewToken();
     Match(TokenType::NAME);
@@ -235,7 +236,7 @@ unique_ptr<ASTNode> Parser::ParseInputStmt() {
 
 // args := expr | ("," expr)*
 Parser::Arguments Parser::ParseArgs() {
-    vector<unique_ptr<ASTNode>> arg_nodes;
+    vector<ASTNodePtr> arg_nodes;
     arg_nodes.push_back(ParseExpr());
 
     while (GetNewAhead().type == TokenType::COMMA) {
@@ -249,7 +250,7 @@ Parser::Arguments Parser::ParseArgs() {
 
 
 // if_statement    := "if" "(" expr ")" NEWLINE* "{" statements "}"
-unique_ptr<ASTNode> Parser::ParseIfStmt() {
+ASTNodePtr Parser::ParseIfStmt() {
    auto if_node = make_unique<ASTIf>(lineno, true);
 
     // Skipping if
@@ -290,7 +291,7 @@ unique_ptr<ASTNode> Parser::ParseIfStmt() {
 }
 
 
-unique_ptr<ASTNode> Parser::ParseElifStmt() {
+ASTNodePtr Parser::ParseElifStmt() {
     auto elif_node = make_unique<ASTIf>(lineno);
 
     // Skipping elif
@@ -323,7 +324,7 @@ Parser::Statements Parser::ParseElseStmt() {
     Match(TokenType::LBRACE);
     GetNewToken();
 
-    Statements else_statements = ParseStatements("}");
+    auto else_statements = ParseStatements("}");
 
     Match(TokenType::RBRACE);
 
@@ -333,7 +334,7 @@ Parser::Statements Parser::ParseElseStmt() {
 
 
 // while_statement := "while" "(" expr ")" NEWLINE* "{" statements "}"
-unique_ptr<ASTNode> Parser::ParseWhileStmt() {
+ASTNodePtr Parser::ParseWhileStmt() {
     auto while_node = make_unique<ASTWhile>(lineno);
 
     // Skipping "while"
@@ -363,7 +364,7 @@ unique_ptr<ASTNode> Parser::ParseWhileStmt() {
 
 
 template <typename Func, typename WhileFunc>
-unique_ptr<ASTNode> Parser::ParseTemplateExpr(Func ParseSubExpr,  WhileFunc CheckStopSymbol) {
+ASTNodePtr Parser::ParseTemplateExpr(Func ParseSubExpr,  WhileFunc CheckStopSymbol) {
     auto template_expr_node = make_unique<ASTOperation>(lineno);
     template_expr_node->AddChild(ParseSubExpr());
     Token next_token = GetNewAhead();
@@ -402,7 +403,7 @@ unique_ptr<ASTNode> Parser::ParseTemplateExpr(Func ParseSubExpr,  WhileFunc Chec
 
 
 // expr := logical_expr ("and" logical_expr)*
-unique_ptr<ASTNode> Parser::ParseExpr() {
+ASTNodePtr Parser::ParseExpr() {
     return ParseTemplateExpr(
         [this]() {
             return ParseLogicalExpr();
@@ -415,7 +416,7 @@ unique_ptr<ASTNode> Parser::ParseExpr() {
 
 
 // logical_expr := logical_term (("or" | "not") logical term)*
-unique_ptr<ASTNode> Parser::ParseLogicalExpr() {
+ASTNodePtr Parser::ParseLogicalExpr() {
     return ParseTemplateExpr(
         [this]() {
             return ParseLogicalTerm();
@@ -428,7 +429,7 @@ unique_ptr<ASTNode> Parser::ParseLogicalExpr() {
 
 
 // logical_term := compare_term (comparison compare_term)*
-unique_ptr<ASTNode> Parser::ParseLogicalTerm() {
+ASTNodePtr Parser::ParseLogicalTerm() {
     return ParseTemplateExpr(
         [this]() {
             return ParseCompareTerm();
@@ -443,7 +444,7 @@ unique_ptr<ASTNode> Parser::ParseLogicalTerm() {
 
 
 // compare_term := add_term (("+" | "-") add_term)*
-unique_ptr<ASTNode> Parser::ParseCompareTerm() {
+ASTNodePtr Parser::ParseCompareTerm() {
     return ParseTemplateExpr(
         [this]() {
             return ParseAddTerm();
@@ -456,7 +457,7 @@ unique_ptr<ASTNode> Parser::ParseCompareTerm() {
 
 
 // add_term := mult_term (("*" | "/") mult_term)*
-unique_ptr<ASTNode> Parser::ParseAddTerm() {
+ASTNodePtr Parser::ParseAddTerm() {
     return ParseTemplateExpr(
         [this]() {
             return ParseMultTerm();
@@ -477,8 +478,8 @@ unique_ptr<ASTNode> Parser::ParseAddTerm() {
  *              | "true"
  *              | "false"
  */
-unique_ptr<ASTNode> Parser::ParseMultTerm() {
-    unique_ptr<ASTNode> mult_term_node;
+ASTNodePtr Parser::ParseMultTerm() {
+    ASTNodePtr mult_term_node;
 
     if (current_token.type == TokenType::LBRACKET) {
         GetNewToken();
@@ -549,11 +550,11 @@ unique_ptr<ASTNode> Parser::ParseMultTerm() {
 }
 
 
-unique_ptr<ASTNode> Parser::ParseVariable() {
+ASTNodePtr Parser::ParseVariable() {
     return make_unique<ASTVariable>(current_token.lexeme, lineno);
 }
 
-unique_ptr<ASTNode> Parser::ParseNumber() {
+ASTNodePtr Parser::ParseNumber() {
     return make_unique<ASTVariable>(Type("int", current_token.lexeme), lineno);
 }
 

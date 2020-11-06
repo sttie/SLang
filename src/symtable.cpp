@@ -17,7 +17,8 @@ void SymTable::UpdateTable(string id, Type type) {
 bool SymTable::AlreadyDefined(const string& id) const {
     if (table.count(id))
         return true;
-    return parent_table_ptr == nullptr ? false : parent_table_ptr->AlreadyDefined(id);
+    return parent_table_ptr == nullptr
+           ? false : parent_table_ptr->AlreadyDefined(id);
 }
 
 
