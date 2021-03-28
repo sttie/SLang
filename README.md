@@ -10,7 +10,7 @@ You can use the executable file SLang and pass to it a name of a file with your 
 ## Grammar
 
 ```
-statements  := (statement | NEWLINE)* | e
+statements  := (statement)* | e
 statement   := func_or_simple | print_stmt | if_statement
 	       | while_statement | return_statement | input_statement
 
@@ -19,18 +19,18 @@ func_or_simple := func_declaration | assignment_expr | expr
 print_stmt      := "print" args
 input_statement := "input" id
 
-if_statement    := "if" "(" expr ")" NEWLINE*
+if_statement    := "if" "(" expr ")"
                    "{" statements "}"
 
-                   ("elif" "(" expr ")" NEWLINE*
+                   ("elif" "(" expr ")"
                      "{" statements "}")*
 
-                   [else NEWLINE* "{" statements "}"]
+                   [else "{" statements "}"]
 
-while_statement := "while" "(" expr ")" NEWLINE*
+while_statement := "while" "(" expr ")"
                     "{" statements "}"
 
-func_declaration := type id "(" func_parameters ")" NEWLINE*
+func_declaration := type id "(" func_parameters ")"
                             "{" statements "}"
 func_parameters := (type id ("," type id)*)*
 
